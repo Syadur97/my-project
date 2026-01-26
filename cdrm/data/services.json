@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "title": "Web Application Development",
+    "short": "Modern, scalable web applications",
+    "details": [
+      "Next.js App Router architecture",
+      "Tailwind & DaisyUI UI systems",
+      "Secure authentication workflows",
+      "Performance and SEO optimization"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Data Management & Analytics",
+    "short": "Reliable data systems and insights",
+    "details": [
+      "MongoDB data modeling",
+      "Secure API development",
+      "Dashboard and reporting tools",
+      "Data validation and integrity checks"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Authentication & Security",
+    "short": "Robust access control solutions",
+    "details": [
+      "Firebase authentication",
+      "Role-based access control (RBAC)",
+      "Session and token management",
+      "Protected dashboards and APIs"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Technical Advisory",
+    "short": "Architecture and system guidance",
+    "details": [
+      "System design and documentation",
+      "Technology stack selection",
+      "Codebase audits and refactoring",
+      "Deployment and scaling strategy"
+    ]
+  }
+]

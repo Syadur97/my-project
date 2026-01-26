@@ -11,6 +11,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between px-4 lg:px-30 h-16">
 
         {/* Logo */}
+        <Link href="/">
         <div className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight">
             iied
@@ -18,26 +19,38 @@ export default function Navbar() {
           <span className="hidden sm:block text-sm leading-tight text-gray-700">
             International Institute<br />for Environment and Development
           </span>
-        </div>
+        </div></Link>
 
         {/* Main Navigation */}
         <nav className="hidden lg:flex items-center gap-8 text-base font-medium">
           <Link href="/about" className="hover:underline">About</Link>
-          <Link href="/map" className="hover:underline">Services</Link>
-          <Link href="/news" className="hover:underline">News and insight</Link>
-          <Link href="/approach" className="hover:underline">Our approach</Link>
-          <Link href="/publications" className="hover:underline">Publications</Link>
+          <Link href="/services" className="hover:underline">Services</Link>
+          <Link href="/blog" className="hover:underline">News and insight</Link>
+          
         </nav>
 
         {/* Icons */}
-        <div className="flex items-center gap-4">
-          <button aria-label="Search">
-            🔍
-          </button>
-          <button className="lg:hidden" aria-label="Menu">
-            ☰
-          </button>
+        <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img
+            alt="Tailwind CSS Navbar component"
+            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
         </div>
+      </div>
+      <ul
+        tabIndex="-1"
+        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <li>
+          <a className="justify-between">
+            Profile
+            <span className="badge">New</span>
+          </a>
+        </li>
+        <li><a>Settings</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
       </div>
 
       {/* ===== SECOND ROW: SCROLLABLE TOPICS ===== */}

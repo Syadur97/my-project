@@ -1,13 +1,16 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const isLoggedIn = false // replace with real auth check
+  const token = req.cookies.get("firebaseAuthToken"); // We'll set this after login
+  const url = req.nextUrl.clone();
 
-  if (!isLoggedIn && req.nextUrl.pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/login', req.url))
+  if (url.pathname.startsWith("/dashboard") && !token) {
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
   }
 
-  return NextResponse.next()
+  return NextResponse.next();
 }
-
+``
