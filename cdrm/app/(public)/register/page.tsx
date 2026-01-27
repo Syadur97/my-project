@@ -3,40 +3,41 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { signIn, signInWithGoogle } from "../../../lib/auth";
+import { signUp, signInWithGoogle } from "../../../lib/auth";
 
-type LoginFormInputs = {
+type RegisterFormInputs = {
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
-  const [loginError, setLoginError] = useState<string | null>(null);
+  const [registerError, setRegisterError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormInputs>();
+  } = useForm<RegisterFormInputs>();
 
-  const onSubmit = async (data: LoginFormInputs) => {
-    setLoginError(null);
+  const onSubmit = async (data: RegisterFormInputs) => {
+    setRegisterError(null);
     try {
-      await signIn(data.email, data.password);
-      router.push("/");
+      await signUp(data.email, data.password);
+      router.push("/dashboard");
     } catch (error: any) {
-      setLoginError(error.message || "Invalid email or password");
+      setRegisterError(error.message || "Registration failed");
     }
   };
 
-  const handleGoogleLogin = async () => {
-    setLoginError(null);
+  const handleGoogleRegister = async () => {
     try {
       await signInWithGoogle();
-      router.push("/");
+      router.push("/dashboard");
     } catch {
-      setLoginError("Google login failed");
+      setRegisterError("Google sign-up failed");
     }
   };
 
@@ -46,7 +47,7 @@ export default function LoginPage() {
         onSubmit={handleSubmit(onSubmit)}
         className="card w-96 bg-base-100 shadow-xl p-6 space-y-4"
       >
-        <h2 className="text-2xl font-bold text-center">Login</h2>
+        <h2 className="text-2xl font-bold text-center">Register</h2>
 
         {/* Email */}
         <div>
@@ -56,10 +57,6 @@ export default function LoginPage() {
             className="input input-bordered w-full"
             {...register("email", {
               required: "Email is required",
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Invalid email address",
-              },
             })}
           />
           {errors.email && (
@@ -73,15 +70,39 @@ export default function LoginPage() {
             type="password"
             placeholder="Password"
             className="input input-bordered w-full"
-            {...register("password", { required: "Password is required" })}
+            {...register("password", {
+              required: "Password is required",
+              minLength: {
+                value: 6,
+                message: "Minimum 6 characters",
+              },
+            })}
           />
           {errors.password && (
             <p className="text-red-500 mt-1">{errors.password.message}</p>
           )}
         </div>
 
-        {loginError && (
-          <p className="text-red-500 text-center">{loginError}</p>
+        {/* Confirm Password */}
+        <div>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className="input input-bordered w-full"
+            {...register("confirmPassword", {
+              validate: (value) =>
+                value === watch("password") || "Passwords do not match",
+            })}
+          />
+          {errors.confirmPassword && (
+            <p className="text-red-500 mt-1">
+              {errors.confirmPassword.message}
+            </p>
+          )}
+        </div>
+
+        {registerError && (
+          <p className="text-red-500 text-center">{registerError}</p>
         )}
 
         <button
@@ -89,23 +110,23 @@ export default function LoginPage() {
           className={`btn btn-primary w-full ${isSubmitting ? "loading" : ""}`}
           disabled={isSubmitting}
         >
-          Login
+          Register
         </button>
 
         <div className="divider">OR</div>
 
         <button
           type="button"
-          onClick={handleGoogleLogin}
+          onClick={handleGoogleRegister}
           className="btn btn-outline w-full"
         >
           Continue with Google
         </button>
 
         <p className="text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <a href="/register" className="link link-primary">
-            Register
+          Already have an account?{" "}
+          <a href="/login" className="link link-primary">
+            Login
           </a>
         </p>
       </form>

@@ -19,15 +19,21 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      console.log("Form Data:", data);
-      // TODO: Replace with API call
-      // await fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) });
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-      alert("Message sent successfully!");
-      reset(); // clear the form
-    } catch (err) {
+      const result = await res.json();
+
+      if (!res.ok) throw new Error(result.error || "Failed to send message");
+
+      alert(result.message);
+      reset();
+    } catch (err: any) {
       console.error(err);
-      alert("Failed to send message. Try again later.");
+      alert(err.message || "Failed to send message. Try again later.");
     }
   };
 
@@ -44,71 +50,52 @@ export default function ContactPage() {
       >
         {/* Name */}
         <div>
-          <label className="label">
-            <span className="label-text">Name</span>
-          </label>
+          <label className="label"><span className="label-text">Name</span></label>
           <input
             type="text"
             {...register("name", { required: "Name is required" })}
             className="input input-bordered w-full"
           />
-          {errors.name && (
-            <p className="text-red-500 mt-1">{errors.name.message}</p>
-          )}
+          {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
         </div>
 
         {/* Email */}
         <div>
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
+          <label className="label"><span className="label-text">Email</span></label>
           <input
             type="email"
             {...register("email", {
               required: "Email is required",
-              pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: "Invalid email address",
-              },
+              pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email" },
             })}
             className="input input-bordered w-full"
           />
-          {errors.email && (
-            <p className="text-red-500 mt-1">{errors.email.message}</p>
-          )}
+          {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
         </div>
 
         {/* Subject */}
         <div>
-          <label className="label">
-            <span className="label-text">Subject</span>
-          </label>
+          <label className="label"><span className="label-text">Subject</span></label>
           <input
             type="text"
             {...register("subject", { required: "Subject is required" })}
             className="input input-bordered w-full"
           />
-          {errors.subject && (
-            <p className="text-red-500 mt-1">{errors.subject.message}</p>
-          )}
+          {errors.subject && <p className="text-red-500 mt-1">{errors.subject.message}</p>}
         </div>
 
         {/* Message */}
         <div>
-          <label className="label">
-            <span className="label-text">Message</span>
-          </label>
+          <label className="label"><span className="label-text">Message</span></label>
           <textarea
             {...register("message", { required: "Message is required" })}
             rows={5}
             className="textarea textarea-bordered w-full"
           />
-          {errors.message && (
-            <p className="text-red-500 mt-1">{errors.message.message}</p>
-          )}
+          {errors.message && <p className="text-red-500 mt-1">{errors.message.message}</p>}
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <div className="text-center">
           <button
             type="submit"
