@@ -100,7 +100,7 @@ export default function Navbar() {
                   <button
                     onClick={async () => {
                       await logOut();
-                      window.location.href = "/login";
+                      window.location.href = "/";
                     }}
                     className="text-red-500"
                   >
