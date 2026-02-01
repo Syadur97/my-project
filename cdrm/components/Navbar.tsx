@@ -112,31 +112,6 @@ export default function Navbar() {
           )}
         </div>
       </div>
-
-      {/* ===== SECOND ROW: SCROLLABLE TOPICS ===== */}
-      <div className="relative border-t bg-gray-50">
-        <div className="flex items-center gap-2 px-4 lg:px-8 overflow-x-auto scrollbar-hide h-14">
-          {[
-            "Food and agriculture",
-            "Sustainable markets",
-            "Policy and planning",
-            "Forests",
-            "Governance",
-            "Communication",
-            "Economics",
-            "Poverty",
-            "Monitoring",
-          ].map((item) => (
-            <Link
-              key={item}
-              href="#"
-              className="whitespace-nowrap rounded-full border px-4 py-2 text-sm hover:bg-gray-100"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
-      </div>
     </header>
   );
 }
