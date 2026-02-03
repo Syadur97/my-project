@@ -1,4 +1,4 @@
-import clientPromise from "../../../lib/mongo"
+import clientPromise, { dbName } from "../../../lib/mongo"
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     }
 
     const client = await clientPromise;
-    const db = client.db("mydatabase"); // Replace with your DB name
+    const db = client.db(dbName);
     const collection = db.collection("contacts");
 
     const result = await collection.insertOne({

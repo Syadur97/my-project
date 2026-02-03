@@ -32,5 +32,15 @@ The project uses **Firebase Authentication** (Email/Password & Google Sign-In) a
 
 ---
 
-## 📁 Project Structure
+## 🔐 Environment Variables
 
+Create a `.env.local` file in the `cdrm` directory with:
+
+```bash
+MONGODB_URI=your_mongodb_connection_string
+MONGODB_DB=mydatabase
+```
+
+---
+
+## 📁 Project Structure

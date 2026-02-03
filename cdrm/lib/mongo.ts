@@ -5,6 +5,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 const uri = process.env.MONGODB_URI;
+const dbName = process.env.MONGODB_DB ?? "mydatabase";
 const options = {};
 
 let client: MongoClient;
@@ -24,3 +25,4 @@ if (process.env.NODE_ENV === "development") {
 }
 
 export default clientPromise;
+export { dbName };
