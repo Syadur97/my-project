@@ -1,111 +1,80 @@
-"use client";
-
-import { useForm } from "react-hook-form";
-
-type ContactFormData = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-};
+import contactItems from "@/data/contactItems.json";
+import Link from "next/link";
+import ContactExtra from "./contactExtra";
 
 export default function ContactPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting, isSubmitSuccessful },
-    reset,
-  } = useForm<ContactFormData>();
-
-  const onSubmit = async (data: ContactFormData) => {
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-
-      if (!res.ok) throw new Error(result.error || "Failed to send message");
-
-      alert(result.message);
-      reset();
-    } catch (err: any) {
-      console.error(err);
-      alert(err.message || "Failed to send message. Try again later.");
-    }
-  };
-
   return (
-    <main className="container mx-auto max-w-3xl px-4 py-12">
-      <h1 className="text-4xl font-bold mb-6 text-center">Contact Us</h1>
-      <p className="text-gray-600 mb-10 text-center">
-        Have questions or want to collaborate? Send us a message.
-      </p>
+    <main className="bg-base-100 py-20">
+      <div className="container mx-auto max-w-6xl px-4">
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="bg-base-100 p-8 rounded-lg shadow-md space-y-6"
-      >
-        {/* Name */}
-        <div>
-          <label className="label"><span className="label-text">Name</span></label>
-          <input
-            type="text"
-            {...register("name", { required: "Name is required" })}
-            className="input input-bordered w-full"
-          />
-          {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
+        {/* Header */}
+        <div className="grid md:grid-cols-2 gap-12 mb-20">
+          <h1 className="text-4xl font-bold">Contact</h1>
+
+          <div className="space-y-4 text-gray-700">
+            <p>
+              Working with others is vital to our work. To get in touch, email{" "}
+              <a
+                href="mailto:inforequest@iied.org"
+                className="link link-primary"
+              >
+                inforequest@iied.org
+              </a>{" "}
+              and we’ll get back to you as soon as we can.
+            </p>
+
+            <p>
+              You can also contact specific{" "}
+              <Link href="#" className="link link-primary">
+                IIED experts
+              </Link>
+              . We look forward to collaborating.
+            </p>
+          </div>
         </div>
 
-        {/* Email */}
-        <div>
-          <label className="label"><span className="label-text">Email</span></label>
-          <input
-            type="email"
-            {...register("email", {
-              required: "Email is required",
-              pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email" },
-            })}
-            className="input input-bordered w-full"
-          />
-          {errors.email && <p className="text-red-500 mt-1">{errors.email.message}</p>}
+        {/* Contact Cards */}
+        <div className="grid md:grid-cols-4 gap-10 text-center">
+          {contactItems.map((item) => (
+            <div
+              key={item.id}
+              className="space-y-4"
+            >
+              <div className="mx-auto w-20 h-20 rounded-full border border-primary flex items-center justify-center text-3xl">
+                {item.icon}
+              </div>
+
+              <h3 className="text-xl font-semibold">
+                {item.title}
+              </h3>
+
+              <div className="text-sm text-gray-600">
+                <a
+                  href={`mailto:${item.email}`}
+                  className="link link-primary block"
+                >
+                  {item.email}
+                </a>
+                <span>{item.phone}</span>
+              </div>
+
+              <p className="text-sm text-gray-700">
+                {item.description}
+              </p>
+
+              {item.linkText && (
+                <Link href="#" className="link link-primary text-sm">
+                  {item.linkText}
+                </Link>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Subject */}
-        <div>
-          <label className="label"><span className="label-text">Subject</span></label>
-          <input
-            type="text"
-            {...register("subject", { required: "Subject is required" })}
-            className="input input-bordered w-full"
-          />
-          {errors.subject && <p className="text-red-500 mt-1">{errors.subject.message}</p>}
-        </div>
-
-        {/* Message */}
-        <div>
-          <label className="label"><span className="label-text">Message</span></label>
-          <textarea
-            {...register("message", { required: "Message is required" })}
-            rows={5}
-            className="textarea textarea-bordered w-full"
-          />
-          {errors.message && <p className="text-red-500 mt-1">{errors.message.message}</p>}
-        </div>
-
-        {/* Submit */}
-        <div className="text-center">
-          <button
-            type="submit"
-            className={`btn btn-primary w-full ${isSubmitting ? "loading" : ""}`}
-            disabled={isSubmitting}
-          >
-            {isSubmitSuccessful ? "Sent!" : "Send Message"}
-          </button>
-        </div>
-      </form>
+      </div>
+      {/* Divider */}
+        <div className="border-t border-base-300"></div>
+        <ContactExtra/>
     </main>
   );
 }

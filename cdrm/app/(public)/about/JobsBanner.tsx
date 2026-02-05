@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function JobsBanner() {
   return (
     // FULL-WIDTH BACKGROUND
-    <div className="relative w-screen bg-cyan-500 overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-30 ">
+    <div className="relative w-screen bg-cyan-500 overflow-hidden left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] lg:px-30 ">
       
       {/* Decorative circle */}
       <div className="absolute -left-24 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-cyan-400 opacity-40 hidden sm:block" />

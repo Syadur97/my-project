@@ -1,0 +1,38 @@
+[
+  {
+    "id": "media",
+    "title": "Media enquiries",
+    "email": "jon.sharman@iied.org",
+    "phone": "+44 (0)20 3463 7377",
+    "description": "We have spokespeople who can provide insights, interviews and background information",
+    "linkText": "Get more details in our media centre",
+    "icon": "📰"
+  },
+  {
+    "id": "publications",
+    "title": "Publication enquiries",
+    "email": "newbooks@iied.org",
+    "phone": "+44 (0)20 3463 7399",
+    "description": "We have more than 7,000 publications that are available open-access",
+    "linkText": "See all our publications",
+    "icon": "📖"
+  },
+  {
+    "id": "jobs",
+    "title": "Jobs at IIED",
+    "email": "peopleteam@iied.org",
+    "phone": "+44 (0)20 3463 7399",
+    "description": "We are often seeking new staff to deliver high quality research, analysis and impact",
+    "linkText": "See our latest jobs and internships",
+    "icon": "👤"
+  },
+  {
+    "id": "technical",
+    "title": "Technical enquiries",
+    "email": "matthew.wright@iied.org",
+    "phone": "+44 (0)20 3463 7399",
+    "description": "Our specialist team ensures our website is secure and up-to-date. Let us know if you spot any issues",
+    "linkText": null,
+    "icon": "⚙️"
+  }
+]
