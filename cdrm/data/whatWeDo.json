@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Research",
+    "text": "Producing evidence that shapes policy and practice.",
+    "image": "https://i.ibb.co.com/TDsbgJB3/research-and-development.png"
+  },
+  {
+    "id": 2,
+    "title": "Policy influence",
+    "text": "Engaging decision-makers at local, national and global levels.",
+    "image": "https://i.ibb.co.com/yncZ7T0S/policy.png"
+  },
+  {
+    "id": 3,
+    "title": "Action & partnerships",
+    "text": "Working with communities and partners for real-world impact.",
+    "image": "https://i.ibb.co.com/chXhcqHK/partnership.png"
+  }
+]

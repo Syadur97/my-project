@@ -4,11 +4,9 @@ return (
 <div className="container mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
 <div>
 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-About IIED
+About CDRM
 </h1>
-<p className="text-lg text-gray-700">
-We are a global research institute working for a fairer,
-more sustainable world.
+<p className="text-lg text-gray-700"> We are a global research institute working for a fairer, more sustainable world.
 </p>
 </div>
 <img
