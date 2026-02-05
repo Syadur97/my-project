@@ -27,7 +27,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <main className="container mx-auto max-w-6xl px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8 text-center">Our Blog</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">Lets Explore the World</h1>
 
       {/* Blog Cards */}
       <div className="grid md:grid-cols-3 gap-8">
