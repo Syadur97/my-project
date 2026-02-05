@@ -4,6 +4,7 @@ import Values from "./Values";
 import JobsBanner from "./JobsBanner";
 import WhatWeDo from "./WhatWeDo";
 import WhoWeAre from "./WhoWeAre";
+import HowWeWork from "./HowWeWork";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -18,6 +19,7 @@ export default function AboutPage() {
       <Values/>
       <WhatWeDo/>
       <WhoWeAre/>
+      <HowWeWork/>
       {/* CTA */}
       <section className="text-center">
         <h2 className="text-2xl font-semibold mb-3">Work With Us</h2>
