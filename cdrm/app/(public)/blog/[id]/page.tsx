@@ -16,8 +16,23 @@ export default async function BlogDetailPage(props: BlogDetailProps) {
   return (
     <main className="container mx-auto max-w-3xl px-4 py-12">
       <h1 className="text-4xl font-bold mb-4">{blog.title}</h1>
-      <p className="text-gray-500 mb-6">By User {blog.userId}</p>
+
+      {/* Author Section */}
+      {blog.user && (
+        <div className="flex items-center mb-6">
+          {blog.user.avatar && (
+            <img
+              src={blog.user.avatar}
+              alt={blog.user.name}
+              className="w-10 h-10 rounded-full mr-3"
+            />
+          )}
+          <span className="text-gray-600 text-lg">By {blog.user.name}</span>
+        </div>
+      )}
+
       <p className="text-gray-700 whitespace-pre-line">{blog.body}</p>
+
       <Link href="/blog" className="btn btn-outline mt-6">
         Back to Blog
       </Link>

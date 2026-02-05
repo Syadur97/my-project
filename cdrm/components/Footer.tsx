@@ -88,7 +88,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 lg:px-10 py-6 flex flex-col md:flex-row md:justify-between gap-4 text-sm">
-          <p>© 2026 International Institute for Environment and Development (IIED)</p>
+          <p>© 2026 Center for Disaster Risk Management (CDRM)</p>
 
           <div className="flex flex-wrap gap-4">
             <Link href="#">Accessibility</Link>
