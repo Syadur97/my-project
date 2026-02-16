@@ -47,11 +47,11 @@ export default function Navbar() {
 
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight">iied</span>
+            <span className="text-xl font-bold tracking-tight">CDRM</span>
             <span className="hidden sm:block text-sm leading-tight text-gray-700">
-              International Institute
+              Center for Disaster
               <br />
-              for Environment and Development
+              Risk Management (CDRM)
             </span>
           </Link>
         </div>

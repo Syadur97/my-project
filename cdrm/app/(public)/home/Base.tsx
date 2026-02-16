@@ -5,6 +5,8 @@ import Newslater from "./NewslaterBanner";
 import { Poppins } from 'next/font/google';
 import ServicesPage from "../services/page";
 import NewslaterBanner from "./NewslaterBanner";
+import BlogCard from "./BlogCard";
+import BlogGrid from "./BlogGrid";
 
 const poppins = Poppins({ weight: ['400','700'], subsets: ['latin'] });
 
@@ -34,6 +36,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <BlogGrid/>
 
       <NewslaterBanner/>
 
