@@ -1,20 +1,14 @@
-import { MongoClient } from "mongodb";
-async function runGetStarted() {
-  // Replace the uri string with your connection string
-  const uri = 'mongodb+srv://syadurcdd_db_user:ZDpVI89k9qp9tYbn@clustercdrm.1azfqj3.mongodb.net/?appName=ClusterCDRM';
-  const client = new MongoClient(uri);
+import clientPromise, { dbName } from "../../../lib/mongo";
+import { NextResponse } from "next/server";
 
+export async function GET() {
   try {
-    const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
-
-    // Queries for a movie that has a title value of 'Back to the Future'
-    const query = { title: 'Back to the Future' };
-    const movie = await movies.findOne(query);
-
-    console.log(movie);
-  } finally {
-    await client.close();
+    const client = await clientPromise;
+    const db = client.db(dbName);
+    await db.command({ ping: 1 });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("MongoDB ping failed", error);
+    return NextResponse.json({ ok: false }, { status: 500 });
   }
 }
-runGetStarted().catch(console.dir);
